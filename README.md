@@ -53,9 +53,7 @@ database/student_management.sql
 
 ## Run Project
 
-Git clone https://github.com/your-username/student-management-system.git
-cd student-management-system
-mvn spring-boot:run
+Git clone https://github.com/tttnhanwork-arch/student-management-system.git
 Access at : http://localhost:8080
 ## Screenshots
 1. Guest page

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách nhân viên</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+<h3>Danh sách nhân viên ở các trường</h3>
+<hr>
+<a th:href="@{/employee/create}" class="btn btn-success mb-4">Thêm mới</a>
+<table class="table table-bordered table-striped">
+    <thead class="table-danger">
+    <tr>
+        <th>Id</th>
+        <th>Họ đệm</th>
+        <th>Tên</th>
+        <th>Số điện thoại</th>
+        <th>Email</th>
+        <th>Vị trí</th>
+        <th>Trường</th>
+        <th>Xử lý</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee:${employees}">
+        <td th:text="${employee.id_employee}"></td>
+        <td th:text="${employee.lastName}"></td>
+        <td th:text="${employee.firstName}"></td>
+        <td th:text="${employee.phone}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.role}"></td>
+        <td th:text="${employee.school != null ? employee.school.name : 'N/A}"></td>
+        <td>
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/employee/update(id=${employee.id_employee})}" class="btn btn-info">Chỉnh sửa</a>
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/employee/delete(id=${employee.id_employee})}" onclick="return confirm('Bạn có chắc muốn xóa nhân viên này không?')" class="btn btn-danger">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

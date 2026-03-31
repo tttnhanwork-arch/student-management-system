@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách phụ huynh</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+<h3>Danh sách phụ huynh</h3>
+<hr>
+<a th:href="@{/parent/create}" class="btn btn-success mb-4">Thêm mới</a>
+<table class="table table-bordered table-striped">
+  <thead class="table-danger">
+  <tr>
+    <th>Id</th>
+    <th>Họ đệm</th>
+    <th>Tên</th>
+    <th>Số điện thoại</th>
+    <th>Email</th>
+    <th>Xử lý</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="parent:${parents}">
+    <td th:text="${parent.id_parent}"></td>
+    <td th:text="${parent.lastName}"></td>
+    <td th:text="${parent.firstName}"></td>
+    <td th:text="${parent.phone}"></td>
+    <td th:text="${parent.email}"></td>
+    <td>
+      <a sec:authorize="hasRole('ADMIN')" th:href="@{/parent/update(id=${parent.id_parent})}" class="btn btn-info">Chỉnh sửa</a>
+      <a sec:authorize="hasRole('ADMIN')" th:href="@{/parent/delete(id=${parent.id_parent})}" onclick="return confirm('Bạn có chắc muốn xóa phụ huynh này không?')" class="btn btn-danger">Xóa</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

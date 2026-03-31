@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách phiếu điểm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+<h3>Danh sách phiếu điểm</h3>
+<hr/>
+<a th:href="@{/scoresheet/create}" class="btn btn-success btn-sm mb-4">Thêm mới</a>
+<table class="table table-bordered table-sm table-striped">
+    <thead class="table-danger">
+    <tr>
+        <th>Id</th>
+        <th>Tên học sinh</th>
+        <th>Môn học</th>
+        <th>Ngày kiểm tra</th>
+        <th>Điểm</th>
+        <th>Xử lý</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="scoresheet:${scoresheets}">
+        <td th:text="${scoresheet.id_sheet}"></td>
+        <td th:text="${scoresheet.student != null ? scoresheet.student.firstName : 'N/A'}"></td>
+        <td th:text="${scoresheet.subject != null ? scoresheet.subject.name : 'N/A'}"></td>
+        <td th:text="${scoresheet.dayOfTest}"></td>
+        <td th:text="${scoresheet.score}"></td>
+        <td>
+            <a sec:authorize="hasAnyRole('ADMIN','TEACHER')" th:href="@{/scoresheet/update(id=${scoresheet.id_sheet})}" class="btn btn-info btn-sm">Chỉnh sửa</a>
+            <a sec:authorize="hasAnyRole('ADMIN','TEACHER')" th:href="@{/scoresheet/delete(id=${scoresheet.id_sheet})} " onclick="return confirm('Bạn có chắc muốn phiếu điểm này không?')" class="btn btn-danger btn-sm">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>

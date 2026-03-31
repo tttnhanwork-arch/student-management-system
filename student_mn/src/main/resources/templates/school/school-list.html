@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách trường</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+<h3>Thông tin trường</h3>
+<hr>
+<a th:href="@{/school/create}" class="btn btn-success btn-sm mb-4">Thêm mới</a>
+<table class="table table-bordered table-striped">
+  <thead class="table-danger">
+  <tr>
+    <th>Mã trường</th>
+    <th>Tên trường</th>
+    <th>Địa chỉ</th>
+    <th>Số điện thoại</th>
+    <th>Hiệu trưởng</th>
+    <th>Xử lý</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="school:${schools}">
+    <td th:text="${school.id_school}"></td>
+    <td th:text="${school.name}"></td>
+    <td th:text="${school.address}"></td>
+    <td th:text="${school.phoneNumber}"></td>
+    <td th:text="${school.principal}"></td>
+<td>
+  <a sec:authorize="hasRole('ADMIN')" th:href="@{/school/update(id=${school.id_school})}" class="btn btn-info btn-sm">Chỉnh sửa</a>
+  <a sec:authorize="hasRole('ADMIN')" th:href="@{/school/delete(id=${school.id_school})}" onclick="return confirm('Bạn có chắc muốn xóa trường này không?')" class="btn btn-danger btn-sm">Xóa</a>
+</td>
+  </tr>
+  </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

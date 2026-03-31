@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+<table class="table table-bordered table-striped">
+  <thead class="table-danger">
+  <tr>
+    <th>Id</th>
+    <th>Họ đệm</th>
+    <th>Tên</th>
+    <th>Ngày sinh</th>
+    <th>Email</th>
+    <th>Lớp</th>
+    <th>Phụ huynh</th>
+  </tr>
+  </thead>
+  <tbody>
+    <td th:text="${student.id_student}"></td>
+    <td th:text="${student.lastName}"></td>
+    <td th:text="${student.firstName}"></td>
+    <td th:text="${student.DOB}"></td>
+    <td th:text="${student.email}"></td>
+    <td th:text="${student.aClass}"></td>
+    <td th:text="${student.parent}"></td>
+  </tr>
+  </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>

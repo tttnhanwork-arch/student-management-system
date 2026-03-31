@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách lớp</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+<h3>Thông tin lớp học</h3>
+<hr>
+<a th:href="@{/class/create}" class="btn btn-success mb-4">Thêm lớp</a>
+<table class="table table-bordered table-striped">
+  <thead class="table-danger">
+  <tr>
+    <th>Id</th>
+    <th>Tên lớp</th>
+    <th>Khối</th>
+    <th>Niên khóa</th>
+    <th>GVCN</th>
+    <th>Trường</th>
+    <th>Xử lý</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="class:${classes}">
+    <td th:text="${class.id_class}"></td>
+    <td th:text="${class.name}"></td>
+    <td th:text="${class.grade}"></td>
+    <td th:text="${class.year}"></td>
+    <td th:text="${class.teacher != null ? class.teacher.firstName : 'N/A'}"></td>
+    <td th:text="${class.school.name}"></td>
+    <td>
+      <a sec:authorize="hasRole('ADMIN')" th:href="@{/class/update(id=${class.id_class})}" class="btn btn-info">Chỉnh sửa</a>
+      <a sec:authorize="hasRole('ADMIN')" th:href="@{/class/delete(id=${class.id_class})}" onclick="return confirm('Bạn có chắc muốn xóa lớp này không?')" class="btn btn-danger">Xóa</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>

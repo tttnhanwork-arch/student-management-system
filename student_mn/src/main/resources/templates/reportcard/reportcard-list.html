@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách học bạ</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+<h3>Danh sách học bạ</h3>
+<hr>
+<a th:href="@{/reportcard/create}" class="btn btn-success mb-4">Thêm mới</a>
+<table class="table table-bordered table-striped">
+  <thead class="table-danger">
+  <tr>
+    <th>Id</th>
+    <th>Học sinh</th>
+    <th>Học kỳ</th>
+    <th>GPA</th>
+    <th>Hạnh kiểm</th>
+    <th>Nhận xét</th>
+    <th>Xử lý</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="reportcard:${reportcards}">
+    <td th:text="${reportcard.id_card}"></td>
+    <td th:text="${reportcard.student != null ? reportcard.student.firstName: 'N/A'}"></td>
+    <td th:text="${reportcard.semester}"></td>
+    <td th:text="${reportcard.GPA}"></td>
+    <td th:text="${reportcard.conduct}"></td>
+    <td th:text="${reportcard.comment}"></td>
+    <td>
+      <a sec:authorize="hasAnyRole('ADMIN', 'TEACHER')" th:href="@{/reportcard/update(id=${reportcard.id_card})}" class="btn btn-info">Chỉnh sửa</a>
+      <a sec:authorize="hasAnyRole('ADMIN', 'TEACHER')" th:href="@{/reportcard/delete(id=${reportcard.id_card})}" onclick="return confirm('Bạn có chắc muốn xóa học bạ này không?')" class="btn btn-danger">Xóa</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

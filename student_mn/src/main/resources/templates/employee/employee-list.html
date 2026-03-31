@@ -30,7 +30,7 @@
         <td th:text="${employee.phone}"></td>
         <td th:text="${employee.email}"></td>
         <td th:text="${employee.role}"></td>
-        <td th:text="${employee.school != null ? employee.school.name : 'N/A}"></td>
+        <td th:text="${employee.school != null ? employee.school.name : 'N/A'}"></td>
         <td>
             <a sec:authorize="hasRole('ADMIN')" th:href="@{/employee/update(id=${employee.id_employee})}" class="btn btn-info">Chỉnh sửa</a>
             <a sec:authorize="hasRole('ADMIN')" th:href="@{/employee/delete(id=${employee.id_employee})}" onclick="return confirm('Bạn có chắc muốn xóa nhân viên này không?')" class="btn btn-danger">Xóa</a>

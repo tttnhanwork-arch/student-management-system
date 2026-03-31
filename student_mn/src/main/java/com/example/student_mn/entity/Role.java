@@ -3,16 +3,17 @@ package com.example.student_mn.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class Authority {
+@Table(name = "role")
+public class Role {
     @Id
     private String name;
 
-    public Authority(String name) {
+    public Role(String name) {
         this.name = name;
 
     }
 
-    public Authority() {
+    public Role() {
     }
 
 
@@ -26,7 +27,7 @@ public class Authority {
 
     @Override
     public String toString() {
-        return "Authority{" +
+        return "Role{" +
                 "name='" + name + '\'' +
                 '}';
     }

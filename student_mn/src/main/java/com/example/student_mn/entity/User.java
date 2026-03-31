@@ -1,8 +1,6 @@
 package com.example.student_mn.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 
 import java.util.Set;
 
@@ -28,12 +26,12 @@ public class User {
 @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 @JoinTable(name = "authorities",
 joinColumns = @JoinColumn(name = "user_id"),
-inverseJoinColumns = @JoinColumn(name = "authority_name"))
-private Set<Authority> authority;
+inverseJoinColumns = @JoinColumn(name = "role"))
+private Set<Role> role;
     public User() {
     }
 
-    public User(int id, String username, String password, boolean enabled, String lastName, String firstName, String email, Set<Authority> authority) {
+    public User(int id, String username, String password, boolean enabled, String lastName, String firstName, String email, Set<Role> role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -41,7 +39,7 @@ private Set<Authority> authority;
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
-        this.authority = authority;
+        this.role = role;
     }
 
     public User(String username, String password, boolean enabled, String lastName, String firstName, String email) {
@@ -86,12 +84,12 @@ private Set<Authority> authority;
         this.email = email;
     }
 
-    public Set<Authority> getAuthority() {
-        return authority;
+    public Set<Role> getAuthority() {
+        return role;
     }
 
-    public void setAuthority(Set<Authority> authority) {
-        this.authority = authority;
+    public void setAuthority(Set<Role> role) {
+        this.role = role;
     }
 
     public int getId() {

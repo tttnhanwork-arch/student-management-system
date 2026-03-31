@@ -20,7 +20,7 @@ public class MySecurity {
     public JdbcUserDetailsManager userDetailsManager (DataSource dataSource){
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         jdbcUserDetailsManager.setUsersByUsernameQuery("select username, password, enabled from users where username= ?");
-        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT u.username, a.name FROM users u JOIN authorities ua ON u.id = ua.user_id JOIN authority a ON ua.authority_name = a.name WHERE u.username = ?");
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT u.username, a.name FROM users u JOIN authorities ua ON u.id = ua.user_id JOIN role a ON ua.role = a.name WHERE u.username = ?");
         return jdbcUserDetailsManager;
     }
     @Bean

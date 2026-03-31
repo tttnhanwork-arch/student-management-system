@@ -2,7 +2,7 @@ package com.example.student_mn.controller;
 
 import com.example.student_mn.WebEntity.RegisterUser;
 import com.example.student_mn.dao.AuthorityRepository;
-import com.example.student_mn.entity.Authority;
+import com.example.student_mn.entity.Role;
 import com.example.student_mn.entity.User;
 import com.example.student_mn.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -66,9 +66,9 @@ public class RegisterController {
         user.setLastName(registerUser.getLastName());
         user.setFirstName(registerUser.getFirstName());
         user.setEmail(registerUser.getEmail());
-        Set<Authority> authorities = new HashSet<>();
-        Authority authority = authorityRepository.findByName("ROLE_USER");
-       authorities.add(authority);
+        Set<Role> authorities = new HashSet<>();
+        Role role = authorityRepository.findByName("ROLE_USER");
+       authorities.add(role);
        user.setAuthority(authorities);
         userService.saveUser(user);
         session.setAttribute("myuser", user);
